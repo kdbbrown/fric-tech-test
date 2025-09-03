@@ -12,11 +12,7 @@ import { BasicTableFiveComponent } from '../../../shared/components/tables/basic
   imports: [
     ComponentCardComponent,
     PageBreadcrumbComponent,
-    BasicTableOneComponent,
-    BasicTableTwoComponent,
     BasicTableThreeComponent,
-    BasicTableFourComponent,
-    BasicTableFiveComponent,
   ],
   templateUrl: './basic-tables.component.html',
   styles: ``

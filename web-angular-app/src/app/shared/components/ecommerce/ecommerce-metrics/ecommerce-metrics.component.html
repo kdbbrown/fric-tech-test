@@ -1,4 +1,7 @@
-@if (loadingAccounts) {
+<div>
+  <h1 class="text-5xl my-2 md:my-4 font-bold text-gray-950">Your Accounts</h1>
+</div>
+  @if (loadingAccounts) {
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
     <app-loader></app-loader>
   </div>
@@ -16,7 +19,7 @@
           <div>
             <span class="text-sm text-gray-500 dark:text-gray-400">Account Balance</span>
             <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              {{ account.balance | currency:account.currency:'symbol':'1.0-0' }}
+              {{ account.balance | currency:account.currency:'symbol':'1.0-0' : 'fr' }}
             </h4>
             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Account No: {{ account.accountNumber }}

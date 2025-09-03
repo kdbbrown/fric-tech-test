@@ -10,11 +10,6 @@ import { RecentOrdersComponent } from '../../../shared/components/ecommerce/rece
   selector: 'app-ecommerce',
   imports: [
     EcommerceMetricsComponent,
-    MonthlySalesChartComponent,
-    MonthlyTargetComponent,
-    StatisticsChartComponent,
-    DemographicCardComponent,
-    RecentOrdersComponent,
   ],
   templateUrl: './ecommerce.component.html',
 })

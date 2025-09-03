@@ -1,8 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import { ButtonComponent } from '../../../ui/button/button.component';
 import { TableDropdownComponent } from '../../../common/table-dropdown/table-dropdown.component';
 import { BadgeComponent } from '../../../ui/badge/badge.component';
+import {ApiService} from "../../../../../core/services/api.service";
+import {AuthServiceService} from "../../../../../core/services/auth/auth-service.service";
+import {TransactionsResponse} from "../../../../../core/models";
+import {DatePickerComponent} from "../../../form/date-picker/date-picker.component";
+import {InputFieldComponent} from "../../../form/input/input-field.component";
+import {LoaderComponent} from "../../../ui/loader/loader.component";
 
 interface Transaction {
   image: string;
@@ -20,155 +26,74 @@ interface Transaction {
     ButtonComponent,
     TableDropdownComponent,
     BadgeComponent,
+    DatePickerComponent,
+    InputFieldComponent,
+    LoaderComponent,
   ],
   templateUrl: './basic-table-three.component.html',
   styles: ``
 })
-export class BasicTableThreeComponent {
+export class BasicTableThreeComponent implements  OnInit{
+  apiService = inject(ApiService)
+  authService = inject(AuthServiceService)
+  accountId = this.authService.userSignal()?.id as string
+
+  fromDate = '';
+  toDate = ''
+  searchQuery = ''
+
+  transactions = signal<TransactionsResponse | null>(null)
+  loadingTransactions = false
+  error : string | null = null
 
   // Type definition for the transaction data
+  ngOnInit() {
+    this.loadTransactions()
+  }
+
+  loadTransactions (){
+    this.apiService.getTransactions(this.accountId).subscribe({
+      next: (response) => {
+        this.transactions.set(response);
+        this.totalPages = Math.ceil(response.total / this.itemsPerPage);
+      },error: (err) => {
+        console.info(err)
+        this.error = err.error
+      }
+    })
+  }
+
+  filterTransactions() {
+    this.loadingTransactions = true;
+    this.error = null;
+
+    this.apiService.getTransactions(this.accountId, {
+      from: this.fromDate,
+      to: this.toDate,
+      query: this.searchQuery,
+      page: this.currentPage,
+      pageSize: this.itemsPerPage
+    }).subscribe({
+      next: (response) => {
+        this.transactions.set(response);
+        this.totalPages = Math.ceil(response.total / this.itemsPerPage);
+        this.loadingTransactions = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.error = err.error || 'Failed to load transactions.';
+        this.loadingTransactions = false;
+      }
+    });
+  }
 
 
-  transactionData: Transaction[] = [
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-  ]
 
   currentPage = 1;
   itemsPerPage = 5;
+  totalPages = 8
 
-  get totalPages(): number {
-    return Math.ceil(this.transactionData.length / this.itemsPerPage);
-  }
 
-  get currentItems(): Transaction[] {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    return this.transactionData.slice(start, start + this.itemsPerPage);
-  }
-
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-    }
-  }
 
   handleViewMore(item: Transaction) {
     // logic here
@@ -180,9 +105,27 @@ export class BasicTableThreeComponent {
     console.log('Delete:', item);
   }
 
-  getBadgeColor(status: string): 'success' | 'warning' | 'error' {
-    if (status === 'Success') return 'success';
-    if (status === 'Pending') return 'warning';
+  getBadgeColor(status: string): 'success' | 'warning' | 'error' | 'info' {
+    if (status === 'completed') return 'success';
+    if (status === 'pending') return 'warning';
+    if (status === 'failed') return 'error';
+    if (status === 'posted') return 'info';
     return 'error';
+  }
+
+  goToPage(number: number) {
+    if (number < 1 || number > this.totalPages) return;
+
+    this.currentPage = number;
+    this.filterTransactions();
+  }
+
+  onFromDateChange(event: { selectedDates: Date[], dateStr: string, instance: any }) {
+    this.fromDate = event.dateStr;
+    console.log('Selected date:', this.fromDate);
+  }
+  onToDateChange(event: { selectedDates: Date[], dateStr: string, instance: any }) {
+    this.toDate = event.dateStr;
+    console.log('Selected date:', this.fromDate);
   }
 }
