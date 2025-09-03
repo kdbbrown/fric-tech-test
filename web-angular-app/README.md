@@ -1,27 +1,95 @@
-# WebAngularApp
+# Free Angular Tailwind Admin Dashboard Template - TailAdmin Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+TailAdmin Angular is a **free and open-source admin dashboard template** built with **Angular** and **Tailwind CSS**. It provides developers with everything they need to create a feature-rich, data-driven **back-end, dashboard, or admin panel** for any type of web project.
 
-## Development server
+![TailAdmin Angular Admin Dashboard](./angular-tailwind.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+With TailAdmin Angular, you’ll get access to a complete set of **dashboard UI components, elements, and ready-to-use pages** to build a modern, high-quality admin panel. Whether it’s for a **complex web application** or a **lightweight project**, TailAdmin Angular is designed to speed up development of any kind of dashboards and admin panels.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+TailAdmin leverages the **powerful ecosystem of Angular 20+**, along with **TypeScript** and the utility-first styling of **Tailwind CSS v4**. Combined, they make TailAdmin Angular a perfect foundation to launch your dashboard or admin panel quickly and effectively.
 
-## Build
+TailAdmin Angular comes with essential UI components and layouts for building **feature-rich, data-driven dashboards** and **admin panels**. TailAdmin Angular is built on:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* **Angular 20+**
+* **TypeScript**
+* **Tailwind CSS v4**
 
-## Running unit tests
+### Quick Links
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ✨ [Visit Website](https://tailadmin.com/)
+- 🚀 [Angular Demo](https://angular-demo.tailadmin.com/)
+- 📄 [Documentation](https://tailadmin.com/docs)
+- ⬇️ [Download](https://tailadmin.com/download)
+- 🖌️ [Figma Design File (Free Edition)](https://www.figma.com/community/file/1463141366275764364)
+- ⚡ [Get PRO Version](https://tailadmin.com/pricing)
+---
 
-## Running end-to-end tests
+## Feature Comparison
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+| Feature | Free Version | Pro Version 🌟 |
+|---------|--------------|----------------|
+| **Dashboards** | 1 Unique Dashboard | 7 Unique Dashboards: Analytics, Ecommerce, Marketing, SaaS, CRM, Stocks, Logistics and more (more coming soon) 📈 |
+| **UI Elements and Components** | 100+ UI elements and components | Included in 500+ components and UI elements |
+| **Design Files** | Basic Figma design files | Complete Figma design system file |
+| **Support** | Community support| Email support |
 
-## Further help
+## Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Prerequisites
+
+Before you start, make sure you have:
+
+* **Node.js 18.x or later** (Node.js 20.x recommended)
+* **Angular CLI** installed globally:
+
+```bash
+npm install -g @angular/cli
+```
+
+---
+
+### Cloning the Repository
+
+Clone the repository:
+
+```bash
+git clone https://github.com/TailAdmin/free-angular-admin-dashboard.git
+```
+
+---
+
+### Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+---
+
+### Start Development Server
+
+```bash
+npm start
+```
+
+Then open:
+👉 `http://localhost:4200`
+
+---
+
+## Angualr.js Tailwind Components
+
+TailAdmin Angular ships with a rich set of **ready-to-use dashboard features**:
+
+* **Ecommerce Dashboard** with essential elements
+* Modern, accessible **sidebar navigation**
+* **Data visualization** with charts and graphs
+* **User profile management** and a **custom 404 page**
+* **Tables** and **charts** (line, bar, etc.)
+* **Authentication forms** and reusable input components
+* **UI elements**: alerts, dropdowns, modals, buttons, and more
+* Built-in **Dark Mode** 🕶️
+* and many more
