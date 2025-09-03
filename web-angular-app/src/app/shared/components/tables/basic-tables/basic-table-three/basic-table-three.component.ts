@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {Component, inject, OnInit, signal} from '@angular/core';
 import { ButtonComponent } from '../../../ui/button/button.component';
-import { TableDropdownComponent } from '../../../common/table-dropdown/table-dropdown.component';
 import { BadgeComponent } from '../../../ui/badge/badge.component';
 import {ApiService} from "../../../../../core/services/api.service";
 import {AuthServiceService} from "../../../../../core/services/auth/auth-service.service";
@@ -10,21 +9,12 @@ import {DatePickerComponent} from "../../../form/date-picker/date-picker.compone
 import {InputFieldComponent} from "../../../form/input/input-field.component";
 import {LoaderComponent} from "../../../ui/loader/loader.component";
 
-interface Transaction {
-  image: string;
-  action: string;
-  date: string;
-  amount: string;
-  category: string;
-  status: "Success" | "Pending" | "Failed";
-}
 
 @Component({
   selector: 'app-basic-table-three',
   imports: [
     CommonModule,
     ButtonComponent,
-    TableDropdownComponent,
     BadgeComponent,
     DatePickerComponent,
     InputFieldComponent,
@@ -44,6 +34,7 @@ export class BasicTableThreeComponent implements  OnInit{
 
   transactions = signal<TransactionsResponse | null>(null)
   loadingTransactions = false
+  fetchingTransactions = false
   error : string | null = null
 
   // Type definition for the transaction data
@@ -52,11 +43,14 @@ export class BasicTableThreeComponent implements  OnInit{
   }
 
   loadTransactions (){
+    this.fetchingTransactions = true
     this.apiService.getTransactions(this.accountId).subscribe({
       next: (response) => {
+        this.fetchingTransactions = false
         this.transactions.set(response);
         this.totalPages = Math.ceil(response.total / this.itemsPerPage);
       },error: (err) => {
+        this.fetchingTransactions = false
         console.info(err)
         this.error = err.error
       }
@@ -95,15 +89,6 @@ export class BasicTableThreeComponent implements  OnInit{
 
 
 
-  handleViewMore(item: Transaction) {
-    // logic here
-    console.log('View More:', item);
-  }
-
-  handleDelete(item: Transaction) {
-    // logic here
-    console.log('Delete:', item);
-  }
 
   getBadgeColor(status: string): 'success' | 'warning' | 'error' | 'info' {
     if (status === 'completed') return 'success';

@@ -1,14 +1,13 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
-import { BadgeComponent } from '../../ui/badge/badge.component';
 import { SafeHtmlPipe } from '../../../pipe/safe-html.pipe';
 import {ApiService} from "../../../../core/services/api.service";
 import {AccountsResponse} from "../../../../core/models";
 import {LoaderComponent} from "../../ui/loader/loader.component";
-import {CurrencyPipe, DecimalPipe} from "@angular/common";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-ecommerce-metrics',
-  imports: [BadgeComponent, SafeHtmlPipe, LoaderComponent, DecimalPipe, CurrencyPipe],
+  imports: [ SafeHtmlPipe, LoaderComponent, CurrencyPipe],
   templateUrl: './ecommerce-metrics.component.html'
 })
 export class EcommerceMetricsComponent implements OnInit{

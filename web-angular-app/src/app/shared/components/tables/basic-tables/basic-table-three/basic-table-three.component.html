@@ -37,30 +37,37 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100 dark:divide-white/[0.05]">
-          @for (item of transactions()?.items; track $index) {
-          <tr>
-            <td class="px-4 py-4 text-gray-700 whitespace-nowrap text-theme-sm dark:text-gray-400">
-              {{ item.date | date }}
-            </td>
-            <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
-              {{ item.amount }} {{item.currency}}
-            </td>
-            <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
-              {{ item.category }}
-            </td>
-            <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
-              {{ item.description }}
-            </td>
-            <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
-              <app-badge
-                size="sm"
-                [color]="getBadgeColor(item.status)"
-              >
-                {{ item.status }}
-              </app-badge>
-            </td>
-          </tr>
+          @if (fetchingTransactions) {
+            <div class="w-full flex items-center justify-center my-4">
+              <app-loader />
+            </div>
+          } @else {
+            @for (item of transactions()?.items; track $index) {
+              <tr>
+                <td class="px-4 py-4 text-gray-700 whitespace-nowrap text-theme-sm dark:text-gray-400">
+                  {{ item.date | date }}
+                </td>
+                <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
+                  {{ item.amount }} {{item.currency}}
+                </td>
+                <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
+                  {{ item.category }}
+                </td>
+                <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
+                  {{ item.description }}
+                </td>
+                <td class="px-4 py-4 text-gray-700 text-theme-sm dark:text-gray-400">
+                  <app-badge
+                    size="sm"
+                    [color]="getBadgeColor(item.status)"
+                  >
+                    {{ item.status }}
+                  </app-badge>
+                </td>
+              </tr>
+            }
           }
+
         </tbody>
       </table>
     </div>

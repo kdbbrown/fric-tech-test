@@ -18,7 +18,7 @@ export class SelectComponent implements OnInit {
   @Input() defaultValue: string = '';
   @Input() value: string = '';
 
-  @Output() valueChange = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<Option | string>();
 
   ngOnInit() {
     if (!this.value && this.defaultValue) {
@@ -28,7 +28,8 @@ export class SelectComponent implements OnInit {
 
   onChange(event: Event) {
     const value = (event.target as HTMLSelectElement).value;
+    const selectedOption = this.options.find(option => option.value === value);
     this.value = value;
-    this.valueChange.emit(value);
+    this.valueChange.emit(selectedOption);
   }
 }

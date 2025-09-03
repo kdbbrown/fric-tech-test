@@ -1,13 +1,12 @@
 import { Routes } from '@angular/router';
 import { EcommerceComponent } from './pages/dashboard/ecommerce/ecommerce.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { FormElementsComponent } from './pages/forms/form-elements/form-elements.component';
-import { BasicTablesComponent } from './pages/tables/basic-tables/basic-tables.component';
 import { NotFoundComponent } from './pages/other-page/not-found/not-found.component';
 import { AppLayoutComponent } from './shared/layout/app-layout/app-layout.component';
 import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/auth-pages/sign-up/sign-up.component';
 import {AuthGuard} from "./core/guards/auth.guard";
+import {BlankComponent} from "./pages/blank/blank.component";
+import {BasicTablesComponent} from "./pages/tables/basic-tables/basic-tables.component";
 
 export const routes: Routes = [
   // 1. Set default path to redirect to 'signin'
@@ -47,16 +46,9 @@ export const routes: Routes = [
       },
       {
         path: 'transfer',
-        component: FormElementsComponent,
+        component: BlankComponent,
         title: 'New Transfer | FricPay'
       },
-
-      {
-        path: 'profile',
-        component: ProfileComponent, // User profile/settings
-        title: 'Profile | FricPay'
-      },
-
       {
         path: '',
         pathMatch: 'full',
