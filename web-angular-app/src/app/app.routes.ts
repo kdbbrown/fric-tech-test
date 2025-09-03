@@ -11,7 +11,7 @@ import { BarChartComponent } from './pages/charts/bar-chart/bar-chart.component'
 import { SignInComponent } from './pages/auth-pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/auth-pages/sign-up/sign-up.component';
 import { CalenderComponent } from './pages/calender/calender.component';
-import {authGuard} from "./core/guards/auth.guard";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 export const routes: Routes = [
   // 1. Set default path to redirect to 'signin'
@@ -37,7 +37,7 @@ export const routes: Routes = [
   {
     path: 'app',
     component: AppLayoutComponent,
-    canActivate: [authGuard], // Protect all child routes
+    canActivate: [AuthGuard], // Protect all child routes
     children: [
       // 3.1. Dashboard (Main Accounts Overview)
       {
