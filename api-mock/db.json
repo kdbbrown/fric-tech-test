@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "u_1",
+      "username": "alice",
+      "password": "password123",
+      "name": "Alice T.",
+      "role": "user"
+    },
+    {
+      "id": "u_2",
+      "username": "bob",
+      "password": "secure456",
+      "name": "Bob M.",
+      "role": "user"
+    }
+  ],
+  "accounts": [
+    { "id": "acc_1", "userId": "u_1", "type": "current", "currency": "XAF", "balance": 542300, "accountNumber": "1000000001" },
+    { "id": "acc_2", "userId": "u_1", "type": "savings", "currency": "XAF", "balance": 1200000, "accountNumber": "1000000002" },
+    { "id": "acc_3", "userId": "u_2", "type": "current", "currency": "XAF", "balance": 285750, "accountNumber": "2000000001" }
+  ],
+  "transactions": [
+    { "id": "tx_1", "accountId": "acc_1", "date": "2025-07-12T09:22:00Z", "amount": -25000, "currency": "XAF", "description": "Loyer Juillet", "status": "posted", "category": "housing" },
+    { "id": "tx_2", "accountId": "acc_1", "date": "2025-07-10T14:11:00Z", "amount": 150000, "currency": "XAF", "description": "Salaire ACME Corp", "status": "failed", "category": "income" },
+    { "id": "tx_3", "accountId": "acc_1", "date": "2025-07-05T11:05:00Z", "amount": -15000, "currency": "XAF", "description": "Supermarket Marché Central", "status": "pending", "category": "groceries" },
+    { "id": "tx_4", "accountId": "acc_1", "date": "2025-07-01T08:00:00Z", "amount": -5000, "currency": "XAF", "description": "Frais de tenue de compte", "status": "posted", "category": "banking" },
+    { "id": "tx_5", "accountId": "acc_1", "date": "2025-06-28T19:30:00Z", "amount": -12000, "currency": "XAF", "description": "Restaurant Le Bon Goût", "status": "posted", "category": "dining" },
+    { "id": "tx_6", "accountId": "acc_1", "date": "2025-06-25T12:15:00Z", "amount": -8000, "currency": "XAF", "description": "Achat crédit mobile", "status": "completed", "category": "utilities" },
+
+    { "id": "tx_7", "accountId": "acc_2", "date": "2025-07-01T00:00:00Z", "amount": 50000, "currency": "XAF", "description": "Virement épargne mensuel", "status": "posted", "category": "transfer" },
+    { "id": "tx_8", "accountId": "acc_2", "date": "2025-06-01T00:00:00Z", "amount": 50000, "currency": "XAF", "description": "Virement épargne mensuel", "status": "posted", "category": "transfer" },
+    { "id": "tx_9", "accountId": "acc_2", "date": "2025-05-01T00:00:00Z", "amount": 50000, "currency": "XAF", "description": "Virement épargne mensuel", "status": "posted", "category": "transfer" },
+    { "id": "tx_10", "accountId": "acc_2", "date": "2025-04-01T00:00:00Z", "amount": 50000, "currency": "XAF", "description": "Virement épargne mensuel", "status": "posted", "category": "transfer" },
+
+    { "id": "tx_11", "accountId": "acc_3", "date": "2025-07-11T16:45:00Z", "amount": -45000, "currency": "XAF", "description": "Paiement facture CANAL+", "status": "pending", "category": "entertainment" },
+    { "id": "tx_12", "accountId": "acc_3", "date": "2025-07-09T10:30:00Z", "amount": 175000, "currency": "XAF", "description": "Salaire Beta Ltd", "status": "posted", "category": "income" },
+    { "id": "tx_13", "accountId": "acc_3", "date": "2025-07-07T13:22:00Z", "amount": -18000, "currency": "XAF", "description": "Stationnement Total", "status": "posted", "category": "transport" },
+    { "id": "tx_14", "accountId": "acc_3", "date": "2025-07-03T17:58:00Z", "amount": -7500, "currency": "XAF", "description": "Pharmacie de la Cité", "status": "posted", "category": "health" },
+    { "id": "tx_15", "accountId": "acc_3", "date": "2025-06-29T14:01:00Z", "amount": -22000, "currency": "XAF", "description": "Courses en ligne Jumia", "status": "completed", "category": "shopping" }
+  ],
+  "transfers": []
+}
